@@ -1,0 +1,13 @@
+Sub TransposeTrials()
+    Dim chunk, pr
+    Application.ScreenUpdating = False
+    chunk = 25
+    pr = 1
+    lr = Cells(Rows.Count, "A").End(xlUp).Row
+    For i = 1 To lr Step chunk
+        Cells(i + 1, "K").Resize(chunk, 1).Copy
+        Cells(pr + 1, "R").PasteSpecial Paste:=xlPasteAll, Transpose:=True
+        pr = pr + 1
+    Next i
+    Application.CutCopyMode = False
+End Sub
